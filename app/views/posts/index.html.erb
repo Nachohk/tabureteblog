@@ -1,0 +1,31 @@
+
+<div class="row">
+<% @posts.each do |post| %>
+    <div class="card col-3">
+        <%= image_tag post.image_url%>
+            <div class="card-body">
+            <h5 class="card-title"><%= post.title%></h5>
+            <p class="card-text"><%= post.description%></p>
+            <p class="card-text"><%= time_ago_in_words(post.created_at)%></p>
+            <%= link_to "show", posts_path(post), class: "btn btn-info"%>
+            <%= link_to "edit", posts_edit_path(post), class: "btn btn-success" %>
+            <%= link_to "destroy", post_path(post),
+             data: { turbo_method: :delete, turbo_confirm: 'Estas seguro que deseas eliminar?' }, 
+             class: "btn btn-warning" %>
+             <%= link_to "Post", posts_new_path, class: "btn btn-info"%>
+            </div>
+        </div>
+    <%end%>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-8">
+        <%= paginate @posts, theme: 'twitter-bootstrap-4' %>
+    </div>
+</div>
+
+
+
+    
+    
+    
